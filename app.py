@@ -23,9 +23,11 @@ def consultar_libro(libro_id):
  return jsonify(libro), 200
 
 @app.post("/libros")
-def crear_libro():
-    # TODO: leer request.get_json(), validar campos obligatorios e insertar.
-    return jsonify({"mensaje": "Endpoint pendiente"}), 501
+def insertar():
+ libro = request.json
+ resultado = insertar_libro(libro)
+ return jsonify(resultado), 201
+
 
 @app.put("/libros/<int:libro_id>")
 def modificar_libro(libro_id):
@@ -36,10 +38,10 @@ def modificar_libro(libro_id):
        return jsonify(resultado), 200
     return jsonify({"mensaje": "Endpoint pendiente"}), 501
 
-@app.delete("/libros/<int:libro_id>")
-def borrar_libro(libro_id):
-    # TODO: comprobar existencia, eliminar y responder correctamente.
-    return jsonify({"mensaje": "Endpoint pendiente"}), 501
+@app.delete("/libros/<int:id>")
+def eliminar(id):
+    resultado = eliminar_libro(id)
+    return jsonify(resultado), 200
 
 @app.errorhandler(Exception)
 def manejar_error(error):
