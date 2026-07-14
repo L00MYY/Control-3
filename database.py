@@ -38,7 +38,12 @@ def actualizar_libro(libro_id: int, cambios: dict):
     # IMPORTANTE: update() siempre debe combinarse con un filtro.
     raise NotImplementedError("Endpoint pendiente: PUT /libros/<id>")
 
-def eliminar_libro(libro_id: int):
-    """TODO 4: eliminar sólo el libro indicado y devolver el eliminado."""
-    # IMPORTANTE: delete() siempre debe combinarse con un filtro.
+def eliminar_libro(id):
+    response = (
+        supabase
+        .table("libros")
+        .delete()
+        .eq("id", id)
+        .execute()
+    )
     raise NotImplementedError("Endpoint pendiente: DELETE /libros/<id>")
