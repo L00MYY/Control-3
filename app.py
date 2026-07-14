@@ -29,7 +29,11 @@ def crear_libro():
 
 @app.put("/libros/<int:libro_id>")
 def modificar_libro(libro_id):
-    # TODO: comprobar existencia, leer cambios y actualizar.
+    @app.put("/libros/<int:id>")
+    def actualizar(id):
+       libro = request.json
+       resultado = actualizar_libro(id, libro)
+       return jsonify(resultado), 200
     return jsonify({"mensaje": "Endpoint pendiente"}), 501
 
 @app.delete("/libros/<int:libro_id>")

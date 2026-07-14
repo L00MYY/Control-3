@@ -29,9 +29,15 @@ def insertar_libro(datos: dict):
     raise NotImplementedError("Endpoint pendiente: POST /libros")
 
 def actualizar_libro(libro_id: int, cambios: dict):
-    """TODO 3: actualizar sólo el libro indicado y devolverlo."""
-    # IMPORTANTE: update() siempre debe combinarse con un filtro.
-    raise NotImplementedError("Endpoint pendiente: PUT /libros/<id>")
+    def actualizar_libro(id, libro):
+         response = (
+              supabase
+              .table("libros")
+              .update(libro)
+              .eq("id", id)
+              .execute()
+              )
+         raise NotImplementedError("Endpoint pendiente: PUT /libros/<id>")
 
 def eliminar_libro(libro_id: int):
     """TODO 4: eliminar sólo el libro indicado y devolver el eliminado."""
