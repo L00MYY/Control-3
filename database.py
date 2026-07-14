@@ -9,6 +9,13 @@ from config import SUPABASE_URL, SUPABASE_KEY
 
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
+def obtener_libro_por_id(libro_id: int):
+    respuesta = (supabase.table("libros").select("*").eq("id", libro_id).execute())
+    if respuesta.data:
+            return respuesta.data[0]
+    return None
+
+
 def obtener_libros():
     """Devuelve todos los libros ordenados por id."""
     respuesta = supabase.table("libros").select("*").order("id").execute()

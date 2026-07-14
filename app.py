@@ -40,5 +40,12 @@ def manejar_error(error):
     # Durante el laboratorio permite observar errores sin ocultarlos completamente.
     return jsonify({"error": str(error)}), 500
 
+@app.get("/libros/<int:libro_id>")
+def consultar_libro(libro_id):
+ libro = obtener_libro_por_id(libro_id)
+ if libro is None:
+    return jsonify({"error": "Libro no encontrado"}), 404
+ return jsonify(libro), 200
+
 if __name__ == "__main__":
     app.run(debug=True)
