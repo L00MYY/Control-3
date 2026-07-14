@@ -21,8 +21,7 @@ def obtener_libro_por_id(libro_id: int):
     respuesta = (supabase.table("libros").select("*").eq("id", libro_id).execute())
     if respuesta.data:
             return respuesta.data[0]
-    return None
-raise NotImplementedError("Endpoint pendiente: GET /libros/<id>")
+    raise NotImplementedError("Endpoint pendiente: GET /libros/<id>")
 
 def insertar_libro(datos: dict):
     """TODO 2: insertar un libro y devolver el registro creado."""
